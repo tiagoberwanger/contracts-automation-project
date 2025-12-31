@@ -4,7 +4,7 @@ import streamlit as st
 import requests
 from datetime import date, timedelta
 
-from backend.healthcheck import check_server_status
+from frontend.healthcheck import check_server_status
 
 # Configuração da página para parecer um App de telemóvel
 st.set_page_config(page_title="Contratos", page_icon="🏠")
@@ -13,7 +13,7 @@ st.title("Novo Contrato")
 
 check_server_status()
 # URL do seu backend (ajuste se estiver na nuvem)
-API_URL = "https://contracts-automation-backend.onrender.com/gerar-contrato"
+API_URL = "https://contracts-automation-backend.onrender.com"
 
 # Organização por abas para não sobrecarregar a tela do telemóvel
 tab1, tab2, tab3, tab4 = st.tabs(["👤 Locatário", "🛡️ Garantia", "🏠 Imóvel", "📋 Vistoria"])
@@ -127,7 +127,7 @@ if st.button("GERAR CONTRATO", use_container_width=True):
 
     with st.spinner("⏳ Gerando o contrato..."):
         try:
-            response = requests.post(API_URL, json=payload, timeout=90)
+            response = requests.post(f"{API_URL}/gerar-contrato", json=payload, timeout=90)
             if response.status_code == HTTPStatus.OK:
                 st.success("✅ Contrato gerado com sucesso!")
                 st.download_button(

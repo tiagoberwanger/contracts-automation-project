@@ -15,7 +15,7 @@ def check_server_status():
         placeholder.caption("⏳ Conectando ao servidor...")
 
         try:
-            url_health = API_URL.replace('/gerar-contrato', '/health')
+            url_health = f"{API_URL}/health"
             response = requests.get(url_health, timeout=2)
 
             if response.status_code == HTTPStatus.OK:
