@@ -123,7 +123,7 @@ if st.button("GERAR CONTRATO", use_container_width=True):
     }
 
     try:
-        response = requests.post(API_URL, json=payload)
+        response = requests.post(API_URL, json=payload, timeout=60)
         if response.status_code == HTTPStatus.OK:
             st.success("Contrato gerado com sucesso!")
             st.download_button(
