@@ -4,11 +4,14 @@ import streamlit as st
 import requests
 from datetime import date, timedelta
 
+from backend.healthcheck import check_server_status
+
 # Configuração da página para parecer um App de telemóvel
-st.set_page_config(page_title="Gestor de Contratos", page_icon="🏠")
+st.set_page_config(page_title="Contratos", page_icon="🏠")
 
-st.title("📄 Novo Contrato")
+st.title("Novo Contrato")
 
+check_server_status()
 # URL do seu backend (ajuste se estiver na nuvem)
 API_URL = "https://contracts-automation-backend.onrender.com/gerar-contrato"
 

@@ -13,11 +13,17 @@ app = FastAPI(title="Gerador de Contratos Condomínio")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://contrato-condominioberwanger.streamlit.app/"],
-    allow_methods=["POST"],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
 TEMPLATE_PATH = os.path.join(os.path.dirname(__file__), "templates", "v1", "modelo_contrato.docx")
+
+
+@app.get("/health")
+async def healthcheck():
+    return {"status": "ok", "message": "wakey wakey eggs and bakey"}
+
 
 @app.post("/gerar-contrato")
 async def gerar_contrato(dados: ContratoInput):
