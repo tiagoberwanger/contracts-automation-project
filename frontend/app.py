@@ -10,7 +10,7 @@ st.set_page_config(page_title="Gestor de Contratos", page_icon="🏠")
 st.title("📄 Novo Contrato")
 
 # URL do seu backend (ajuste se estiver na nuvem)
-API_URL = "http://localhost:8000/gerar-contrato"
+API_URL = "https://contracts-automation-backend.onrender.com/gerar-contrato"
 
 # Organização por abas para não sobrecarregar a tela do telemóvel
 tab1, tab2, tab3, tab4 = st.tabs(["👤 Locatário", "🛡️ Garantia", "🏠 Imóvel", "📋 Vistoria"])
