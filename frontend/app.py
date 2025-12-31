@@ -125,17 +125,19 @@ if st.button("GERAR CONTRATO", use_container_width=True):
         "data_assinatura": date.today().strftime("%d/%m/%Y")
     }
 
-    try:
-        response = requests.post(API_URL, json=payload, timeout=60)
-        if response.status_code == HTTPStatus.OK:
-            st.success("Contrato gerado com sucesso!")
-            st.download_button(
-                label="⬇️Baixar contrato (.docx)",
-                data=response.content,
-                file_name=f"contrato_{locatario_nome}.docx",
-                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            )
-        else:
-            st.error(f"Erro no Backend: {response.text}")
-    except Exception as e:
-        st.error(f"Não foi possível conectar ao Backend: {e}")
+    with st.spinner("⏳ Gerando o contrato..."):
+        try:
+            response = requests.post(API_URL, json=payload, timeout=90)
+            if response.status_code == HTTPStatus.OK:
+                st.success("✅ Contrato gerado com sucesso!")
+                st.download_button(
+                    label="⬇️Baixar contrato (.docx)",
+                    data=response.content,
+                    file_name=f"contrato_{locatario_nome.replace(" ", "_")}.docx",
+                    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    use_container_width=True
+                )
+            else:
+                st.error(f"❌ Erro no servidor: {response.text}")
+        except Exception as e:
+            st.error(f"Não foi possível conectar ao Backend: {e}")
