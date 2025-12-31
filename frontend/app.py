@@ -4,16 +4,35 @@ import streamlit as st
 import requests
 from datetime import date, timedelta
 
-from frontend.healthcheck import check_server_status
+# URL do backend
+API_URL = "https://contracts-automation-backend.onrender.com"
 
-# Configuração da página para parecer um App de telemóvel
+# Configuração da página
 st.set_page_config(page_title="Contratos", page_icon="🏠")
 
 st.title("Novo Contrato")
 
+def check_server_status():
+    if "server_ready" not in st.session_state:
+        st.session_state.server_ready = False
+
+    if not st.session_state.server_ready:
+        placeholder = st.empty()
+        placeholder.caption("⏳ Conectando ao servidor...")
+
+        try:
+            url_health = f"{API_URL}/health"
+            response = requests.get(url_health, timeout=2)
+
+            if response.status_code == HTTPStatus.OK:
+                st.session_state.server_ready = True
+                placeholder.caption("✅ Servidor Pronto")
+        except:
+            pass
+    else:
+        st.caption("✅ Servidor Pronto")
+
 check_server_status()
-# URL do seu backend (ajuste se estiver na nuvem)
-API_URL = "https://contracts-automation-backend.onrender.com"
 
 # Organização por abas para não sobrecarregar a tela do telemóvel
 tab1, tab2, tab3, tab4 = st.tabs(["👤 Locatário", "🛡️ Garantia", "🏠 Imóvel", "📋 Vistoria"])
