@@ -5,10 +5,17 @@ from http import HTTPStatus
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
 from docxtpl import DocxTemplate
+from starlette.middleware.cors import CORSMiddleware
 
 from backend.schemas import ContratoInput
 
 app = FastAPI(title="Gerador de Contratos Condomínio")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://contrato-condominioberwanger.streamlit.app/"],
+    allow_methods=["POST"],
+    allow_headers=["*"],
+)
 
 TEMPLATE_PATH = os.path.join(os.path.dirname(__file__), "templates", "v1", "modelo_contrato.docx")
 
