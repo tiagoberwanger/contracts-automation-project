@@ -1,6 +1,24 @@
-# Automação de geração de contratos
+# 📝 Automação de geração de contratos
 
-Esse projeto consiste num sistema simples, front e backend, para geração de contratos baseado em modelos pré-estabelecidos.
+Modelo de **contrato de locação** projetado para ser **simples, versionável e automatizável**.
+
+Este repositório **não é um sistema completo**, mas sim a base contratual e lógica necessária para evoluir para automação.
+
+## 📌 O que é este projeto?
+
+Um **modelo único de contrato de locação** que suporta:
+
+- Locatário **Pessoa Física ou Pessoa Jurídica**
+- **Beneficiário** (ocupante residente) *OU*
+- **Fiador** (garantia)
+
+## 🧠 Conceito principal
+
+O contrato usa **blocos condicionais** (marcadores técnicos) que:
+
+- não aparecem no contrato final
+- servem como referência para scripts ou LLMs
+- permitem ativar ou remover trechos automaticamente
 
 ## Tecnologias
 
