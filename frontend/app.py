@@ -113,6 +113,7 @@ if st.button("GERAR CONTRATO", use_container_width=True):
     payload = {
         "nome_locatario": locatario_nome,
         "eh_pj": eh_pj,
+        "tem_beneficiario": eh_pj,
         "cpf_cnpj_locatario": locatario_documento,
         "endereco_locatario": locatario_endereco,
         "nome_beneficiario": beneficiario_nome if eh_pj else None,

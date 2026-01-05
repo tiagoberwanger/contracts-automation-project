@@ -20,7 +20,7 @@ class ContratoInput(BaseModel):
     cpf_beneficiario: Optional[str] = None
     endereco_beneficiario: Optional[str] = None
 
-    tem_fianca: bool = False
+    tem_fiador: bool = False
     nome_fiador: Optional[str] = None
     estado_civil_fiador: Optional[str] = None
     profissao_fiador: Optional[str] = None
