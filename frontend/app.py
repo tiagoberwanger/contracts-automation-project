@@ -39,6 +39,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["👤 Locatário", "🛡️ Garantia", "🏠 I
 
 with tab1:
     locatario_nome = st.text_input("Nome do Locatário")
+    estado_civil_locatario = st.text_input("Estado Civil do Locatário")
     eh_pessoa_juridica = st.radio("É pessoa jurídica?", ["não", "sim"], index=0)
     eh_pj = True if eh_pessoa_juridica == "sim" else False
     locatario_documento = st.text_input("CNPJ" if eh_pj else "CPF")
@@ -112,6 +113,7 @@ with tab4:
 if st.button("GERAR CONTRATO", use_container_width=True):
     payload = {
         "nome_locatario": locatario_nome,
+        "estado_civil_locatario": estado_civil_locatario,
         "eh_pj": eh_pj,
         "tem_beneficiario": eh_pj,
         "cpf_cnpj_locatario": locatario_documento,
